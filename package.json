@@ -11,8 +11,7 @@
         "test:headed": "playwright test --headed",
         "test:ui": "playwright test --ui",
         "test:debug": "playwright test --debug",
-        "test:report": "playwright show-report",
-        "allure:report": "allure generate allure-results -o allure-report --clean"
+        "test:report": "playwright show-report"
     },
     "keywords": [],
     "author": "",
@@ -23,7 +22,6 @@
         "@playwright/cli": "^0.1.17",
         "@playwright/test": "^1.62.0",
         "@types/node": "^26.1.2",
-        "allure-playwright": "^3.10.2",
         "pdf-parse": "^2.4.5",
         "prettier": "^3.6.2",
         "typescript": "^7.0.2"

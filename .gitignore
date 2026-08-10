@@ -1,5 +1,5 @@
 *.env
-todo.txt
+TODO.md
 .DS_Store
 
 dist/
@@ -11,5 +11,3 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-allure-results/
-allure-report/

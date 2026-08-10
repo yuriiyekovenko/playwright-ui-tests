@@ -1,9 +1,27 @@
-# learning-playwright
+# Playwright Test Automation Learning Project
 
-This repository is primarily a Playwright sandbox.
+A hands-on test automation project built with Playwright and TypeScript.
 
-## Playwright
+The UI tests cover the SauceDemo web application and demonstrate:
 
-- `npm test`: run Playwright tests
-- `npm run test:ui`: open Playwright UI mode
-- `npm run typecheck`: TypeScript typecheck for test/page/fixture code (no JS emit)
+- Page Object Model
+- custom Playwright fixtures
+- parameterized tests
+- data-driven sorting validation
+- positive and negative test scenarios
+- expected failures for known defects
+- download and PDF content validation
+- GitHub Actions CI
+- Chromium and Firefox execution
+- HTML reporting
+
+## Run locally
+
+npm ci
+npm test
+
+## Other commands
+
+npm run typecheck
+npm run test:ui
+npm run test:headed

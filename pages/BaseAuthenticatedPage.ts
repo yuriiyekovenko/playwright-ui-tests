@@ -2,7 +2,6 @@ import { Page, Locator, expect } from '@playwright/test';
 
 export class BaseAuthenticatedPage {
     readonly page: Page;
-    readonly cartLocator: Locator;
     readonly openMenuButton: Locator;
     readonly closeMenuButton: Locator;
     readonly logoutMenuItem: Locator;
@@ -12,7 +11,6 @@ export class BaseAuthenticatedPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.cartLocator = this.page.locator('.shopping_cart_link');
         this.openMenuButton = this.page.locator('#react-burger-menu-btn');
         this.closeMenuButton = this.page.locator('#react-burger-cross-btn');
         this.logoutMenuItem = this.page.getByRole('link', { name: 'Logout' });
@@ -49,10 +47,6 @@ export class BaseAuthenticatedPage {
 
     async expectTitle(title: string) {
         await expect(this.titleLabel).toHaveText(title);
-    }
-
-    async getTitle() {
-        return await this.titleLabel.textContent();
     }
 
     async logout() {

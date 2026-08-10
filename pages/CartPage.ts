@@ -31,6 +31,10 @@ export class CartPage extends BaseAuthenticatedPage {
         await expect(this.checkoutButton).toBeDisabled();
     }
 
+    async expectCheckoutToBeEnabled() {
+        await expect(this.checkoutButton).toBeEnabled();
+    }
+
     async expectItemInCart(itemName: string) {
         await expect(this.cartItem(itemName)).toBeVisible();
     }

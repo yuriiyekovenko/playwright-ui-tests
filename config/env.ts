@@ -9,5 +9,6 @@ function requiredEnv(name: string): string {
 export const env = {
     baseUrl: requiredEnv('BASE_URL'),
     username: requiredEnv('USERNAME'),
+    lockedOutUsername: requiredEnv('LOCKED_OUT_USERNAME'),
     password: requiredEnv('PASSWORD'),
 };
