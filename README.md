@@ -17,11 +17,15 @@ The UI tests cover the SauceDemo web application and demonstrate:
 
 ## Run locally
 
+```bash
 npm ci
 npm test
+```
 
 ## Other commands
 
+```bash
 npm run typecheck
 npm run test:ui
 npm run test:headed
+```
