@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BaseAuthenticatedPage } from './BaseAuthenticatedPage';
+import { BaseAuthenticatedPage } from './base-authenticated-page';
 
 export class CartPage extends BaseAuthenticatedPage {
     readonly checkoutButton: Locator;

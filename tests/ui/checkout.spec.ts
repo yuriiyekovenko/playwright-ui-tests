@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
 import { test, expect } from '../../fixtures/fixtures';
 import { env } from '../../config/env';
-import { extractPdfText } from '../../helpers/utils';
-import type { CustomerInfo } from '../../pages/CheckoutStepOnePage';
+import { extractPdfText } from '../../utils/utils';
+import type { CustomerInfo } from '../../pages/checkout-step-one-page';
 
 const checkoutItems = [
     'Sauce Labs Backpack',

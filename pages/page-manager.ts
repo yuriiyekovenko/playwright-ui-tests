@@ -1,11 +1,11 @@
 import { Page } from '@playwright/test';
-import { LoginPage } from './LoginPage';
-import { InventoryPage } from './InventoryPage';
-import { InventoryItemPage } from './InventoryItemPage';
-import { CartPage } from './CartPage';
-import { CheckoutStepOnePage } from './CheckoutStepOnePage';
-import { CheckoutStepTwoPage } from './CheckoutStepTwoPage';
-import { CheckoutCompletePage } from './CheckoutCompletePage';
+import { LoginPage } from './login-page';
+import { InventoryPage } from './inventory-page';
+import { InventoryItemPage } from './inventory-item-page';
+import { CartPage } from './cart-page';
+import { CheckoutStepOnePage } from './checkout-step-one-page';
+import { CheckoutStepTwoPage } from './checkout-step-two-page';
+import { CheckoutCompletePage } from './checkout-complete-page';
 
 export class PageManager {
     private _login?: LoginPage;

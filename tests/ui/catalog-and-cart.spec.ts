@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures/fixtures';
 import { env } from '../../config/env';
-import type { SortOrder, InventoryItem } from '../../pages/InventoryPage';
+import type { SortOrder, InventoryItem } from '../../pages/inventory-page';
 
 const sortOrders: SortOrder[] = ['az', 'za', 'hilo', 'lohi'];
 

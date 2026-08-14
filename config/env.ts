@@ -11,4 +11,7 @@ export const env = {
     username: requiredEnv('USERNAME'),
     lockedOutUsername: requiredEnv('LOCKED_OUT_USERNAME'),
     password: requiredEnv('PASSWORD'),
+    apiBaseUrl: requiredEnv('API_BASE_URL'),
+    apiAdminUsername: requiredEnv('API_ADMIN_USERNAME'),
+    apiAdminPassword: requiredEnv('API_ADMIN_PASSWORD'),
 };

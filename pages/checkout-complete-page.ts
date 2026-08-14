@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { BaseAuthenticatedPage } from './BaseAuthenticatedPage';
+import { BaseAuthenticatedPage } from './base-authenticated-page';
 
 export class CheckoutCompletePage extends BaseAuthenticatedPage {
     readonly homeButton: Locator;

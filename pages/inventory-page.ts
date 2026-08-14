@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BaseAuthenticatedPage } from './BaseAuthenticatedPage';
+import { BaseAuthenticatedPage } from './base-authenticated-page';
 
 export type SortOrder = 'az' | 'za' | 'lohi' | 'hilo';
 export type InventoryItem = {

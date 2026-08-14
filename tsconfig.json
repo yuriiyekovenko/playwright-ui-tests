@@ -12,10 +12,14 @@
     },
     "include": [
         "pages/**/*.ts",
+        // "clients/**/*.ts",
+        // "types/**/*.ts",
+        // "factories/**/*.ts",
         "fixtures/**/*.ts",
         "config/**/*.ts",
         "tests/**/*.ts",
-        "playwright.config.ts"
+        "playwright.config.ts",
+        "playwright.api.config.ts"
     ],
     "exclude": ["node_modules", "playwright-report", "test-results"]
 }
