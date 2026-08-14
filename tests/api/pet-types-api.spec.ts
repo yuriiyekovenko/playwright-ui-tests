@@ -6,9 +6,9 @@ import { faker } from '@faker-js/faker';
  * @returns random and hopefully unique positive integer not bigger than int32
  */
 function fakeId() {
-    return faker.number.int({ 
-        min: 2 ** 30, 
-        max: 2 ** 31 - 1 
+    return faker.number.int({
+        min: 2 ** 30,
+        max: 2 ** 31 - 1,
     });
 }
 
@@ -17,7 +17,7 @@ test('Create new PetType', async ({ client }) => {
     const createdPetType = await client.petTypes.create(newPetType);
     expect(createdPetType).toEqual({
         id: expect.any(Number),
-        name: newPetType.name
+        name: newPetType.name,
     });
 });
 
@@ -35,18 +35,22 @@ for (const { title, payload } of [
 }
 
 test('Update existing PetType', async ({ client }) => {
-    const payload = PetTypeFactory.random()
+    const payload = PetTypeFactory.random();
     const petType = await client.petTypes.create(payload);
-    petType.name += " updated";
+    petType.name += ' updated';
     await client.petTypes.update(petType.id, petType, 204);
-    
+
     const updatedPetType = await client.petTypes.get(petType.id);
     expect(updatedPetType).toEqual(petType);
 });
 
-test('Updating non-existing PetType fails', async ({client}) => {
+test('Updating non-existing PetType fails', async ({ client }) => {
     const id = fakeId();
-    const response = await client.petTypes.update(id, {id: id, name: faker.string.alpha(10)}, 404);
+    const response = await client.petTypes.update(
+        id,
+        { id: id, name: faker.string.alpha(10) },
+        404,
+    );
     expect(response.status()).toBe(404);
 });
 
@@ -56,7 +60,7 @@ test(`Update PetType fails if empty payload provided`, async ({ client }) => {
     const response = await client.petTypes.update(created.id, {}, 400);
     expect(await response.json()).toMatchObject({
         status: 400,
-        detail: 'The request contains invalid or missing parameters'
+        detail: 'The request contains invalid or missing parameters',
     });
 });
 
@@ -67,7 +71,7 @@ test(`Update PetType fails if 'id' field is missing in the payload`, async ({ cl
     const response = await client.petTypes.update(created.id, payload, 400);
     expect(await response.json()).toMatchObject({
         status: 400,
-        detail: 'The request contains invalid or missing parameters'
+        detail: 'The request contains invalid or missing parameters',
     });
 });
 
@@ -78,7 +82,7 @@ test(`Update PetType fails if 'name' field is missing in the payload`, async ({ 
     const response = await client.petTypes.update(created.id, payload, 400);
     expect(await response.json()).toMatchObject({
         status: 400,
-        detail: 'The request contains invalid or missing parameters'
+        detail: 'The request contains invalid or missing parameters',
     });
 });
 
@@ -100,20 +104,20 @@ test('List all PetTypes', async ({ client }) => {
     for (const item of allPetTypes) {
         expect(item).toMatchObject({
             id: expect.any(Number),
-            name: expect.any(String)
-        })
+            name: expect.any(String),
+        });
     }
 });
 
-test('Delete PetType', async ({client}) => {
+test('Delete PetType', async ({ client }) => {
     const petType = PetTypeFactory.random();
-    const created = await client.petTypes.create(petType)
+    const created = await client.petTypes.create(petType);
     const deleted = await client.petTypes.delete(created.id);
     await client.petTypes.get(created.id, 404);
     expect(deleted).toBeUndefined();
 });
 
-test('Delete PetType fails if non-existing id provided', async ({client}) => {
+test('Delete PetType fails if non-existing id provided', async ({ client }) => {
     const response = await client.petTypes.delete(fakeId(), 404);
     expect(response.status()).toBe(404);
 });

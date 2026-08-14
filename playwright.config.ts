@@ -8,15 +8,16 @@ export default defineConfig({
     /* Run tests in files in parallel */
     fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
-    forbidOnly: !!process.env.CI,
+    forbidOnly: Boolean(process.env.CI),
     /* Retry on CI only */
     retries: process.env.CI ? 2 : 0,
     /* Opt out of parallel tests on CI. */
     workers: process.env.CI ? 1 : undefined,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
     reporter: [
-        ['list'], 
-        ['html', { open: 'on-failure', outputFolder: 'playwright-report-ui' }]
+        ['list'],
+        ['github'],
+        ['html', { open: 'on-failure', outputFolder: 'playwright-report' }],
     ],
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
@@ -26,7 +27,7 @@ export default defineConfig({
         trace: 'on-first-retry',
     },
 
-    /* Configure projects for major browsers */
+    /* Configure projects for major browsers and the 3rd one for api tests */
     projects: [
         {
             name: 'chromium',
@@ -35,7 +36,33 @@ export default defineConfig({
 
         {
             name: 'firefox',
-            use: { browserName: 'firefox' },
+            use: { ...devices['Desktop Firefox'] },
+        },
+
+        {
+            name: 'api',
+            testDir: './tests/api',
+            use: {
+                baseURL: env.apiBaseUrl,
+                httpCredentials: {
+                    username: env.apiAdminUsername,
+                    password: env.apiAdminPassword,
+                },
+            },
         },
     ],
+
+    webServer: process.env.CI
+        ? undefined
+        : {
+              command:
+                  'docker run --rm -e PETCLINIC_SECURITY_ENABLE=true -p 9966:9966 springcommunity/spring-petclinic-rest',
+              url: `${env.apiBaseUrl}/petclinic/actuator/health`,
+              reuseExistingServer: !process.env.CI,
+
+              gracefulShutdown: {
+                  signal: 'SIGTERM',
+                  timeout: 5000,
+              },
+          },
 });
