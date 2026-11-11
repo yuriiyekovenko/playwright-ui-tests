@@ -1,3 +1,13 @@
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({
+    path: path.resolve(
+        process.cwd(),
+        process.env.TEST_ENV ? `.env.${process.env.TEST_ENV}` : '.env',
+    ),
+});
+
 function requiredEnv(name: string): string {
     const value = process.env[name];
     if (!value) {
