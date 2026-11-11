@@ -8,11 +8,6 @@ jobs:
     test:
         timeout-minutes: 60
         runs-on: ubuntu-latest
-        services:
-            petclinic:
-                image: springcommunity/spring-petclinic-rest
-                env:
-                    PETCLINIC_SECURITY_ENABLE: 'true'
         container:
             image: mcr.microsoft.com/playwright:v1.62.0-noble
         env:
@@ -20,9 +15,6 @@ jobs:
             USERNAME: standard_user
             LOCKED_OUT_USERNAME: locked_out_user
             PASSWORD: secret_sauce
-            API_BASE_URL: http://petclinic:9966
-            API_ADMIN_USERNAME: admin
-            API_ADMIN_PASSWORD: admin
         steps:
             - uses: actions/checkout@v6
 
@@ -33,15 +25,6 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
-
-            - name: Wait for PetClinic API
-              run: |
-                  curl --fail \
-                  --retry-connrefused \
-                  --user "$API_ADMIN_USERNAME:$API_ADMIN_PASSWORD" \
-                  --retry 20 \
-                  --retry-delay 2 \
-                  "$API_BASE_URL/petclinic/actuator/health"
 
             - name: Run Playwright tests
               run: npx playwright test

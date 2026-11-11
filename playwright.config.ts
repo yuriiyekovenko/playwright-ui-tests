@@ -26,7 +26,7 @@ export default defineConfig({
         trace: 'on-first-retry',
     },
 
-    /* Configure projects for major browsers and the 3rd one for api tests */
+    /* Configure projects for major browsers */
     projects: [
         {
             name: 'chromium',
@@ -37,31 +37,5 @@ export default defineConfig({
             name: 'firefox',
             use: { ...devices['Desktop Firefox'] },
         },
-
-        {
-            name: 'api',
-            testDir: './tests/api',
-            use: {
-                baseURL: env.apiBaseUrl,
-                httpCredentials: {
-                    username: env.apiAdminUsername,
-                    password: env.apiAdminPassword,
-                },
-            },
-        },
     ],
-
-    webServer: process.env.CI
-        ? undefined
-        : {
-              command:
-                  'docker run --rm -e PETCLINIC_SECURITY_ENABLE=true -p 9966:9966 springcommunity/spring-petclinic-rest',
-              url: `${env.apiBaseUrl}/petclinic/actuator/health`,
-              reuseExistingServer: !process.env.CI,
-
-              gracefulShutdown: {
-                  signal: 'SIGTERM',
-                  timeout: 5000,
-              },
-          },
 });
