@@ -19,6 +19,7 @@ export class InventoryItemPage extends BaseAuthenticatedPage {
 
     async expectOnItemDetailsPage() {
         await expect(this.page).toHaveURL(/inventory-item\.html\?id=\d+$/);
+        await expect(this.backToProductsButton).toBeVisible();
     }
 
     async removeItemFromCart() {

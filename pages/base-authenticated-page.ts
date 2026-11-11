@@ -13,7 +13,7 @@ export class BaseAuthenticatedPage {
         this.page = page;
         this.openMenuButton = this.page.locator('#react-burger-menu-btn');
         this.closeMenuButton = this.page.locator('#react-burger-cross-btn');
-        this.logoutMenuItem = this.page.getByRole('link', { name: 'Logout' });
+        this.logoutMenuItem = this.page.getByRole('button', { name: 'Logout' });
         this.cartBadge = this.page.getByTestId('shopping-cart-badge');
         this.cartLink = this.page.getByTestId('shopping-cart-link');
         this.titleLabel = this.page.getByTestId('title');
