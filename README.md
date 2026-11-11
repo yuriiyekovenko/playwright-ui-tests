@@ -1,8 +1,8 @@
-# Playwright Test Automation Learning Project
+# Playwright UI Testing Practice
 
-A hands-on test automation project built with Playwright and TypeScript.
+A hands-on project for practising UI test automation with Playwright and TypeScript.
 
-The UI tests cover the SauceDemo web application and demonstrate:
+The tests cover [SauceDemo](https://www.saucedemo.com), a public demo web shop, and demonstrate:
 
 - Page Object Model
 - custom Playwright fixtures
@@ -15,10 +15,28 @@ The UI tests cover the SauceDemo web application and demonstrate:
 - Chromium and Firefox execution
 - HTML reporting
 
-## Run locally
+## Setup
+
+Create a `.env` file and install dependencies:
 
 ```bash
 npm ci
+```
+
+Required variables:
+
+```
+BASE_URL=https://www.saucedemo.com
+USERNAME=standard_user
+LOCKED_OUT_USERNAME=locked_out_user
+PASSWORD=secret_sauce
+```
+
+Set `TEST_ENV=<name>` to load `.env.<name>` instead of `.env`.
+
+## Run locally
+
+```bash
 npm test
 ```
 
